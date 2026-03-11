@@ -1,0 +1,159 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap');
+
+body{
+    font-family: 'Poppins', sans-serif;
+    background: #242456;
+    color: beige;
+    margin: 0;
+}
+
+/* Container */
+.dashboard-container{
+    padding: 60px 5%;
+}
+.dashboard-card{
+    background:rgba(255,255,255,0.05);
+    padding:25px;
+    border-radius:15px;
+    backdrop-filter:blur(10px);
+    box-shadow:0 10px 25px rgba(0,0,0,0.3);
+}
+
+/* Page Title */
+.page-title{
+    text-align: center;
+    font-size: 42px;
+    font-weight: 700;
+    margin-bottom: 50px;
+   background: linear-gradient(90deg,#00c6ff,#0072ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Tabs */
+.tabs{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+}
+
+.tab-btn{
+    padding: 12px 30px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    background: rgba(255,255,255,0.08);
+    color: white;
+    transition: 0.4s;
+    backdrop-filter: blur(10px);
+}
+
+.tab-btn:hover{
+    background: linear-gradient(45deg,#ff0844,#ffb199);
+    transform: translateY(-3px);
+}
+
+.tab-btn.active{
+    background: linear-gradient(45deg,#ff0844,#ffb199);
+    box-shadow: 0 0 20px rgba(255,0,80,0.6);
+}
+
+/* Dashboard Glass Box */
+.dash{
+    display: none;
+    animation: fadeIn 0.6s ease;
+}
+
+.active-dash{
+    display: block;
+}
+
+iframe{
+    width: 100%;
+    height: 850px;
+    border-radius: 25px;
+    border: none;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+}
+
+/* Animation */
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(20px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+/* Responsive */
+@media(max-width:768px){
+    .page-title{font-size:28px;}
+    iframe{height:600px;}
+}
+</style>
+
+<div class="dashboard-container">
+
+    <h2 class="page-title">Interactive Heart Disease Dashboards</h2>
+
+    <h1 style="text-align:center; font-size:40px;">
+Heart Disease Data Insights
+</h1>
+<p style="text-align:center; max-width:700px; margin:auto;">
+This dashboard analyzes key health indicators such as age,
+cholesterol, blood pressure, and chest pain type to identify
+patterns associated with heart disease risk.
+</p>
+
+<div style="text-align:center; margin-bottom:30px;">
+    <a href="PASTE_YOUR_TABLEAU_LINK_HERE" target="_blank"
+       style="padding:12px 25px;
+       background:linear-gradient(45deg,#ff0844,#ffb199);
+       border-radius:25px;
+       text-decoration:none;
+       color:white;
+       font-weight:600;">
+       View Full Tableau Workbook
+    </a>
+</div>
+
+
+    <!-- Demographic -->
+    <div id="d1" class="dash active-dash">
+        <iframe 
+        src="https://public.tableau.com/views/heartdiseaseg/Demographicanalysis?:embed=yes&:showVizHome=no">
+        </iframe>
+    </div>
+
+    <!-- Lifestyle -->
+    <div id="d2" class="dash">
+        <iframe 
+        src="https://public.tableau.com/views/heartdiseasegro/LifestyleRiskFactors?:embed=yes&:showVizHome=no">
+        </iframe>
+    </div>
+
+    <!-- Medical -->
+    <div id="d3" class="dash">
+        <iframe 
+        src="https://public.tableau.com/views/heartdiseasegr/MedicalConditionsAnalysis?:embed=yes&:showVizHome=no">
+        </iframe>
+    </div>
+
+
+</div>
+
+<script>
+function showDash(id, btn) {
+    document.querySelectorAll('.dash').forEach(d => d.classList.remove('active-dash'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+
+    document.getElementById(id).classList.add('active-dash');
+    btn.classList.add('active');
+}
+</script>
+
+{% endblock %}

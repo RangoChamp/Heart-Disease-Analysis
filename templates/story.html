@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+.page-title{
+    text-align:center;
+    font-size:48px;
+    font-weight:800;
+    margin-top:60px;
+    margin-bottom:20px;
+    background: linear-gradient(90deg,#ff0844,#ffb199);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+/* Subtitle */
+.story-subtitle{
+    text-align:center;
+    font-size:18px;
+    opacity:0.8;
+    margin-bottom:50px;
+}
+
+/* Glass Container */
+.viz-wrapper{
+    width:90%;
+    margin: auto;
+    padding:40px;
+    border-radius:30px;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    animation: fadeUp 1s ease;
+}
+
+iframe{
+    width:100%;
+    height:900px;
+    border-radius:25px;
+    border:none;
+    box-shadow:0 15px 40px rgba(0,0,0,0.7);
+}
+
+/* Animation */
+@keyframes fadeUp{
+    from{opacity:0; transform:translateY(40px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+/* Responsive */
+@media(max-width:768px){
+    .page-title{font-size:30px;}
+    iframe{height:600px;}
+}
+</style>
+
+<section>
+    <h2 class="page-title">Heart Disease Analysis Story</h2>
+    <p class="story-subtitle">
+        A complete visual journey exploring cardiovascular risk patterns,
+        demographic trends, and lifestyle impacts through interactive storytelling.
+    </p>
+
+    <div class="viz-wrapper">
+        <iframe
+            src="https://public.tableau.com/views/heartdiseasegroupsss/HeartDiseaseAnalysisStory?:embed=yes&:display_count=no&:showVizHome=no"
+            allowfullscreen>
+        </iframe>
+    </div>
+</section>
+
+{% endblock %}
